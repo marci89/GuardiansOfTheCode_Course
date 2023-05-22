@@ -1,16 +1,15 @@
-﻿
-namespace GuardiansOfTheCode
+﻿namespace GuardiansOfTheCode
 {
 	/// <summary>
 	/// Singleton pattern implementation
 	/// </summary>
 	public sealed class PrimaryPlayer
 	{
-
 		private static readonly PrimaryPlayer _instance;
 
-		 // Private constructor to prevent direct instantiation
-		private PrimaryPlayer() { }
+		// Private constructor to prevent direct instantiation
+		private PrimaryPlayer()
+		{ }
 
 		// Lazy initialization: create instance only when accessed for the first time in a static constructor
 		static PrimaryPlayer()
