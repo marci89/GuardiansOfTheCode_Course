@@ -1,4 +1,6 @@
-﻿namespace GuardiansOfTheCode
+﻿using GuardiansOfTheCode.Weapon;
+
+namespace GuardiansOfTheCode
 {
 	/// <summary>
 	/// Gameboard class
@@ -14,6 +16,7 @@
 		{
 			// Inicializing the player
 			_player = PrimaryPlayer.Instance;
+			_player.Weapon = new Sword(12, 8);
 		}
 
 		public void PlayArea(int lvl)
@@ -41,7 +44,11 @@
 
 			foreach (var enemy in enemies)
 			{
-				Console.WriteLine(enemy.GetType());
+				while(enemy.Health > 0 || _player.Health > 0)
+				{
+					_player.Weapon.Use(enemy);
+					enemy.Attack(_player);
+				}
 			}
 		}
 	}

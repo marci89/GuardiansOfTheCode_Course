@@ -13,6 +13,26 @@
 		public int Level { get; }
 
 		/// <summary>
+		/// Enemy's over time damage
+		/// </summary>
+		public int OverTimeDamage { get; set; }
+
+		/// <summary>
+		/// Enemy's armor
+		/// </summary>
+		public int Armor { get; set; }
+
+		/// <summary>
+		/// Enemy paralyzed
+		/// </summary>
+		public bool Paralyzed { get; set; }
+
+		/// <summary>
+		/// Enemy paralyzedFor
+		/// </summary>
+		public int ParalyzedFor { get; set; }
+
+		/// <summary>
 		/// Enemy attack method
 		/// </summary>
 		/// <param name="player"></param>

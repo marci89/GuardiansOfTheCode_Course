@@ -12,6 +12,11 @@
 
 		public int Level => _level;
 
+		public int OverTimeDamage { get; set; }
+		public int Armor { get; set; }
+		public bool Paralyzed { get; set; }
+		public int ParalyzedFor { get; set; }
+
 		public Giant(int health, int level)
 		{
 			_health = health;
