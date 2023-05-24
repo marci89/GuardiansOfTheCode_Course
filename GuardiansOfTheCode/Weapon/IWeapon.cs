@@ -1,6 +1,8 @@
-﻿namespace GuardiansOfTheCode.Weapon
+﻿using GuardiansOfTheCode.Enemy;
+
+namespace GuardiansOfTheCode.Weapon
 {
-	public interface IWeapon
+    public interface IWeapon
 	{
 		int Damage { get;}
 		void Use(IEnemy enemy);

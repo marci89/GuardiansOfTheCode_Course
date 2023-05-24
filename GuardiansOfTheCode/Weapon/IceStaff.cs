@@ -1,9 +1,11 @@
-﻿namespace GuardiansOfTheCode.Weapon
+﻿using GuardiansOfTheCode.Enemy;
+
+namespace GuardiansOfTheCode.Weapon
 {
-	/// <summary>
-	///  IceStaff weapon
-	/// </summary>
-	public class IceStaff : IWeapon
+    /// <summary>
+    ///  IceStaff weapon
+    /// </summary>
+    public class IceStaff : IWeapon
 	{
 		private int _damage;
 		private int _paralyzedFor;

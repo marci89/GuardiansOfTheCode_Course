@@ -1,9 +1,11 @@
-﻿namespace GuardiansOfTheCode.Weapon
+﻿using GuardiansOfTheCode.Enemy;
+
+namespace GuardiansOfTheCode.Weapon
 {
-	/// <summary>
-	/// Sword weapon
-	/// </summary>
-	public class Sword : IWeapon
+    /// <summary>
+    /// Sword weapon
+    /// </summary>
+    public class Sword : IWeapon
 	{
 		private int _damage;
 		private int _armorDamage;

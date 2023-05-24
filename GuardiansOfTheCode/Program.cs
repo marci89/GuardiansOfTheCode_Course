@@ -1,5 +1,4 @@
-﻿
-using GuardiansOfTheCode;
+﻿using GuardiansOfTheCode.Gameboard;
 
 //PrimaryPlayer player = PrimaryPlayer.Instance;
 //Console.WriteLine($"{player.Name} - lvl {player.Level}");
