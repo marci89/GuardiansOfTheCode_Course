@@ -1,6 +1,4 @@
-﻿using System.Reflection.Emit;
-
-namespace GuardiansOfTheCode.Enemy
+﻿namespace GuardiansOfTheCode.Enemy
 {
 	/// <summary>
 	/// Factory pattern implementation
@@ -51,7 +49,6 @@ namespace GuardiansOfTheCode.Enemy
 			{
 				_werewolvesPool.Push(new Werewolf(health, level));
 			}
-
 		}
 
 		/// <summary>
@@ -75,7 +72,6 @@ namespace GuardiansOfTheCode.Enemy
 			{
 				_giantsPool.Push(new Giant(health, level));
 			}
-
 		}
 
 		/// <summary>
@@ -91,7 +87,6 @@ namespace GuardiansOfTheCode.Enemy
 			if (_areaLevel < 3)
 			{
 				count = 15;
-
 			}
 			else if (_areaLevel >= 3 && _areaLevel < 10)
 			{
@@ -104,13 +99,13 @@ namespace GuardiansOfTheCode.Enemy
 
 			(health, level, armor) = GetZombieStatus(_areaLevel);
 
-			for(int i=0; i<count; i++)
+			for (int i = 0; i < count; i++)
 			{
 				_zombiesPool.Push(new Zombie(health, level, armor));
 			}
 		}
 
-		#endregion
+		#endregion PreLoads
 
 		#region Get statuses
 
@@ -168,7 +163,6 @@ namespace GuardiansOfTheCode.Enemy
 				health = 66;
 				level = 2;
 				armor = 15;
-
 			}
 			else if (areaLvl >= 3 && areaLvl < 10)
 			{
@@ -184,10 +178,9 @@ namespace GuardiansOfTheCode.Enemy
 			}
 
 			return (health, level, armor);
-
 		}
 
-		#endregion
+		#endregion Get statuses
 
 		#region Reclaiming enemies
 
@@ -225,7 +218,7 @@ namespace GuardiansOfTheCode.Enemy
 			_giantsPool.Push(giant);
 		}
 
-		#endregion
+		#endregion Reclaiming enemies
 
 		#region Spaw enemies
 
@@ -264,15 +257,16 @@ namespace GuardiansOfTheCode.Enemy
 		/// </summary>
 		public Zombie SpawnZombie(int areaLevel)
 		{
-			if (_zombiesPool.Count  > 0)
+			if (_zombiesPool.Count > 0)
 			{
 				return _zombiesPool.Pop();
-			} else
+			}
+			else
 			{
 				throw new Exception("Zombies pool depleted");
-			}	
+			}
 		}
 
-		#endregion
+		#endregion Spaw enemies
 	}
 }
