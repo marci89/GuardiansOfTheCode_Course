@@ -31,16 +31,17 @@ namespace GuardiansOfTheCode.Gameboard
         public void PlayFirstLevel()
         {
             const int currentLvl = 1;
+            EnemyFactory factory = new EnemyFactory(currentLvl);
             List<IEnemy> enemies = new List<IEnemy>();
 
             for (int i = 0; i < 10; i++)
             {
-                enemies.Add(EnemyFactory.SpawnZombie(currentLvl));
+                enemies.Add(factory.SpawnZombie(currentLvl));
             }
 
             for (int i = 0; i < 3; i++)
             {
-                enemies.Add(EnemyFactory.SpawnWerewolf(currentLvl));
+                enemies.Add(factory.SpawnWerewolf(currentLvl));
             }
 
             foreach (var enemy in enemies)
