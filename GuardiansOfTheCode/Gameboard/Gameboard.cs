@@ -1,5 +1,6 @@
 ﻿using Common;
 using GuardiansOfTheCode.Enemy;
+using GuardiansOfTheCode.Facades;
 using GuardiansOfTheCode.Weapon;
 using Newtonsoft.Json;
 
@@ -15,11 +16,15 @@ namespace GuardiansOfTheCode.Gameboard
 		/// </summary>
 		private PrimaryPlayer _player;
 
+		private GameboardFacade _gameboardFacade;
+
 		public Gameboard()
 		{
 			// Inicializing the player
 			_player = PrimaryPlayer.Instance;
 			_player.Weapon = new Sword(12, 8);
+
+			_gameboardFacade = new GameboardFacade();
 		}
 
 		/// <summary>
@@ -28,13 +33,16 @@ namespace GuardiansOfTheCode.Gameboard
 		/// <param name="lvl"></param>
 		public async Task PlayArea(int lvl)
 		{
-			if (lvl == 1)
+			if (lvl == -1)
 			{
 				_player.Cards = (await FetchCards()).ToArray();
 				Console.WriteLine("Ready to play level 1?");
 				Console.ReadKey();
 				PlayFirstLevel();
 
+			} else
+			{
+				await _gameboardFacade.Play(_player, lvl);
 			}
 		}
 
