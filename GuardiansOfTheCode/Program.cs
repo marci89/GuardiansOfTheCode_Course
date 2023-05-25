@@ -1,4 +1,5 @@
-﻿using GuardiansOfTheCode.Gameboard;
+﻿using Common;
+using GuardiansOfTheCode.Gameboard;
 using System.Runtime.CompilerServices;
 
 public class Program
@@ -7,10 +8,10 @@ public class Program
 	{
 		try {
 			testApiConncetion().Wait();
+			TestDecorators();
 
 			Gameboard board = new Gameboard();
-			board.PlayArea(1);
-
+			board.PlayArea(1).Wait();
 			Console.ReadKey();
 		}
 		catch
@@ -58,6 +59,16 @@ public class Program
 			throw new Exception("Failed to connect to server.");
 		}
 
+	}
 
+	private static void TestDecorators()
+	{
+		Card soldier = new Card("Soldier", 25, 20);
+		soldier = new AttackDecorator(soldier, "Sword", 15);
+		soldier = new AttackDecorator(soldier, "Amulet", 5);
+		soldier = new DefenseDecorator(soldier, "Helmet", 10);
+		soldier = new DefenseDecorator(soldier, "Heavy Armor", 45);
+
+		Console.WriteLine($"Final stats: {soldier.Attack} / {soldier.Defense}");
 	}
 }
