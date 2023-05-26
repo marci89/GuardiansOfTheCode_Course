@@ -1,6 +1,5 @@
 ﻿using Common;
 using GuardiansOfTheCode.Gameboard;
-using System.Runtime.CompilerServices;
 
 public class Program
 {
@@ -12,6 +11,9 @@ public class Program
 
 			Gameboard board = new Gameboard();
 			board.PlayArea(1).Wait();
+
+			TestComposite();
+
 			Console.ReadKey();
 		}
 		catch
@@ -61,6 +63,9 @@ public class Program
 
 	}
 
+	/// <summary>
+	/// Testing Decorator
+	/// </summary>
 	private static void TestDecorators()
 	{
 		Card soldier = new Card("Soldier", 25, 20);
@@ -70,5 +75,31 @@ public class Program
 		soldier = new DefenseDecorator(soldier, "Heavy Armor", 45);
 
 		Console.WriteLine($"Final stats: {soldier.Attack} / {soldier.Defense}");
+	}
+
+	/// <summary>
+	/// Testing composite
+	/// </summary>
+	private static void TestComposite()
+	{
+		CardDeck deck = new CardDeck();
+		CardDeck attackDeck = new CardDeck();
+		CardDeck defensekDeck = new CardDeck();
+
+		attackDeck.Add(new Card("Basic Infantry Unit", 12, 15));
+		attackDeck.Add(new Card("Advanced Infantry Unit", 25, 18));
+		attackDeck.Add(new Card("Cavarly Unit", 32, 24));
+
+		defensekDeck.Add(new Card("Wooden Shield", 0, 6));
+		defensekDeck.Add(new Card("Iron Shield", 0, 9));
+		defensekDeck.Add(new Card("Shining Royal Armor", 0, 40));
+
+		deck.Add(attackDeck);
+		deck.Add(new Card("Small Beast", 16, 3));
+		deck.Add(new Card("High Elf Rogue", 22, 7));
+		deck.Add(defensekDeck);
+
+		Console.WriteLine(deck.Display());
+
 	}
 }

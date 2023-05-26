@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Card class
 	/// </summary>
-	public class Card
+	public class Card : ICardComponent
 	{
 		protected string _name;
 		protected int _attack;
@@ -21,5 +21,25 @@
 		public virtual int Attack { get { return _attack; }  set { _attack = value; } }
 		public virtual int Defense { get { return _defense; } set { _defense = value; } }
 
+		public void Add(ICardComponent component)
+		{
+			throw new InvalidOperationException("Can't call this method on a card");
+		}
+
+		public string Display()
+		{
+			return $"{_name}: {_attack} / {_defense}";
+		
+		}
+
+		public ICardComponent Get(int index)
+		{
+			throw new InvalidOperationException("Can't call this method on a card");
+		}
+
+		public bool Remove(ICardComponent component)
+		{
+			throw new InvalidOperationException("Can't call this method on a card");
+		}
 	}
 }
