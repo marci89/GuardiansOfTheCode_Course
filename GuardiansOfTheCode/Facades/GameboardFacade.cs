@@ -1,6 +1,7 @@
 ﻿using Common;
 using GuardiansOfTheCode.Enemy;
 using GuardiansOfTheCode.Gameboard;
+using GuardiansOfTheCode.Proxies;
 using GuardiansOfTheCode.Weapon;
 using Newtonsoft.Json;
 
@@ -16,6 +17,12 @@ namespace GuardiansOfTheCode.Facades
 		private HttpClient _http;
 		private EnemyFactory _enemyFactory;
 		private List<IEnemy> _enimies = new List<IEnemy>();
+		private CardsProxy _cardsProxy;
+
+		public GameboardFacade()
+		{
+			_cardsProxy = new CardsProxy();
+		}
 
 		/// <summary>
 		///  Game start based on level
@@ -79,11 +86,7 @@ namespace GuardiansOfTheCode.Facades
 		/// </summary>
 		private async Task AddPlayerCards()
 		{
-			using (var _http = new HttpClient())
-			{
-				var cardsJson = await _http.GetStringAsync("https://localhost:7164/Card");
-				_player.Cards = JsonConvert.DeserializeObject<IEnumerable<Card>>(cardsJson).ToArray();
-			}
+			_player.Cards = (await _cardsProxy.GetCards()).ToArray();
 		}
 
 		/// <summary>
