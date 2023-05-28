@@ -38,7 +38,7 @@ namespace GuardiansOfTheCode.Enemy
         /// Enemy attack method
         /// </summary>
         /// <param name="player"></param>
-        void Attack(PrimaryPlayer player);
+        int Attack(PrimaryPlayer player);
 
         /// <summary>
         /// Enemy defend method

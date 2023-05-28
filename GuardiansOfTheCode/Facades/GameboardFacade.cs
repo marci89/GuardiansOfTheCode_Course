@@ -2,6 +2,7 @@
 using GuardiansOfTheCode.Enemy;
 using GuardiansOfTheCode.Gameboard;
 using GuardiansOfTheCode.Proxies;
+using GuardiansOfTheCode.Strategies;
 using GuardiansOfTheCode.Weapon;
 using Newtonsoft.Json;
 
@@ -37,6 +38,7 @@ namespace GuardiansOfTheCode.Facades
 			LoadZombies(areaLevel);
 			LoadWerewolves(areaLevel);
 			LoadGiants(areaLevel);
+			StartTurns();
 		}
 
 		/// <summary>
@@ -120,7 +122,7 @@ namespace GuardiansOfTheCode.Facades
 
 			for (int i = 0; i < count; i++)
 			{
-				_enimies.Add(_enemyFactory.SpawnWerewolf(areaLevel));
+				_enimies.Add(_enemyFactory.SpawnZombie(areaLevel));
 			}
 		}
 
@@ -165,6 +167,44 @@ namespace GuardiansOfTheCode.Facades
 			for (int i = 0; i < count; i++)
 			{
 				_enimies.Add(_enemyFactory.SpawnGiant(areaLevel));
+			}
+		}
+
+		private void StartTurns()
+		{
+			IEnemy currentEnemy = null;
+
+			while (true) {
+			if (currentEnemy == null)
+				{
+					if(_enimies.Count > 0)
+					{
+						currentEnemy = _enimies[0];
+						_enimies.RemoveAt(0);
+					}
+					 else
+					{
+						Console.WriteLine("You won this level");
+						break;
+					}
+				}
+
+				//your turn
+				//_player.Weapon.Use(currentEnemy);
+
+				//Enemey turn
+				//currentEnemy.Attack(_player);
+
+				var damage = currentEnemy.Attack(_player);
+				_player.Health -= damage;
+				if(_player.Health < 20)
+				{
+					new CriticalHealthIndicator().NotifyAboutDamage(_player.Health, damage);
+				} else
+				{
+					new RegularDamageIndicator().NotifyAboutDamage(_player.Health, damage);
+				}
+				Thread.Sleep(500);
 			}
 		}
 	}

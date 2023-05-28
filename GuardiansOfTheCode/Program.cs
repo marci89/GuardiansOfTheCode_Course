@@ -1,24 +1,33 @@
-﻿using Common;
+﻿
+using Common;
+using GuardiansOfTheCode.Facades;
 using GuardiansOfTheCode.Gameboard;
 
 public class Program
 {
 	public static void Main()
 	{
+		PrimaryPlayer player = PrimaryPlayer.Instance;
+		Console.WriteLine($"{player.Name} - lvl {player.Level}");
+
 		try {
 			testApiConncetion().Wait();
-			TestDecorators();
+			//TestDecorators();
 
-			Gameboard board = new Gameboard();
-			board.PlayArea(1).Wait();
+			//Gameboard board = new Gameboard();
+			//board.PlayArea(1).Wait();
 
-			TestComposite();
+			GameboardFacade gameboard = new GameboardFacade();
+			gameboard.Play(player, 1).Wait();
+
+			//TestComposite();
 
 			Console.ReadKey();
 		}
-		catch
+		catch(Exception ex)
 		{
 			Console.WriteLine("Failed to initialize game.");
+			Console.WriteLine(ex.Message);
 			Console.ReadKey();
 		}
 

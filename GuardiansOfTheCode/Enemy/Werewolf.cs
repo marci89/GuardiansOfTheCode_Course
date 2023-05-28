@@ -25,9 +25,10 @@ namespace GuardiansOfTheCode.Enemy
             _level = level;
         }
 
-        public void Attack(PrimaryPlayer player)
+        public int Attack(PrimaryPlayer player)
         {
             Console.WriteLine("Werewolf attacking " + player.Name);
+            return 20;
         }
 
         public void Defend(PrimaryPlayer player)

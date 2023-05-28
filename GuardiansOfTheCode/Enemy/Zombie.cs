@@ -26,10 +26,11 @@ namespace GuardiansOfTheCode.Enemy
             Armor = armor;
         }
 
-        public void Attack(PrimaryPlayer player)
+        public int Attack(PrimaryPlayer player)
         {
             Console.WriteLine("Zombie attacking " + player.Name);
-        }
+			return 10;
+		}
 
         public void Defend(PrimaryPlayer player)
         {
