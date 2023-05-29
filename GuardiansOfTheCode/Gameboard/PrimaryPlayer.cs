@@ -64,5 +64,10 @@ namespace GuardiansOfTheCode.Gameboard
 		/// Player's health
 		/// </summary>
 		public int Health { get; set; }
+
+		public void Hit(int damage)
+		{
+			Health -= damage;
+		}
 	}
 }
