@@ -1,5 +1,6 @@
 ﻿
 using Common;
+using GuardiansOfTheCode.Battlefields;
 using GuardiansOfTheCode.Facades;
 using GuardiansOfTheCode.Gameboard;
 
@@ -10,30 +11,29 @@ public class Program
 		PrimaryPlayer player = PrimaryPlayer.Instance;
 		Console.WriteLine($"{player.Name} - lvl {player.Level}");
 
-		try {
+		try
+		{
 			testApiConncetion().Wait();
 			//TestDecorators();
-
-			//Gameboard board = new Gameboard();
-			//board.PlayArea(1).Wait();
-
-			GameboardFacade gameboard = new GameboardFacade();
-			gameboard.Play(player, 1).Wait();
+			//GameboardFacade gameboard = new GameboardFacade();
+			//	gameboard.Play(player, 1).Wait();
 
 			//TestComposite();
 
+			TestBattlefields();
+
 			Console.ReadKey();
 		}
-		catch(Exception ex)
+		catch (Exception ex)
 		{
 			Console.WriteLine("Failed to initialize game.");
 			Console.WriteLine(ex.Message);
 			Console.ReadKey();
 		}
 
-		
 
-		
+
+
 	}
 
 	/// <summary>
@@ -46,9 +46,9 @@ public class Program
 		//interval in milliseconds
 		int attemptInterval = 2000;
 
-		using(var http = new HttpClient())
+		using (var http = new HttpClient())
 		{
-			for(int i = 0; i < maxAttempts; i++)
+			for (int i = 0; i < maxAttempts; i++)
 			{
 				try
 				{
@@ -62,10 +62,11 @@ public class Program
 				{
 
 				}
-				finally {
+				finally
+				{
 					Console.WriteLine("Lost connection to server. Attempting to re-connect");
 					Thread.Sleep(attemptInterval);
-						}
+				}
 			}
 			throw new Exception("Failed to connect to server.");
 		}
@@ -111,4 +112,15 @@ public class Program
 		Console.WriteLine(deck.Display());
 
 	}
+
+	/// <summary>
+	/// Testing battlefields
+	/// </summary>
+	private static void TestBattlefields()
+	{
+		BattlefieldTemplate battlefield = new VolcanoBattlefield();
+		Console.WriteLine(battlefield.Descripbe());
+		Console.ReadKey();
+	}
+
 }
