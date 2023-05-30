@@ -1,5 +1,4 @@
-﻿using Common;
-using GuardiansOfTheCode.Commands;
+﻿using GuardiansOfTheCode.Commands;
 using GuardiansOfTheCode.Enemy;
 using GuardiansOfTheCode.Gameboard;
 using GuardiansOfTheCode.Proxies;
@@ -70,10 +69,14 @@ namespace GuardiansOfTheCode.Facades
 						_player.Weapon = new FireStaff(12, 14);
 						break;
 					}
-					else if (choice == 2)
+					else if (choice == 3)
 					{
 						_player.Weapon = new IceStaff(5, 1);
 						break;
+					}
+					else
+					{
+						Console.WriteLine("Invalid input");
 					}
 				}
 				else
@@ -200,21 +203,19 @@ namespace GuardiansOfTheCode.Facades
 					}
 				}
 
-				//your turn
-				//_player.Weapon.Use(currentEnemy);
-
-				//Enemey turn
-				//currentEnemy.Attack(_player);
-
-				var damage = currentEnemy.Attack(_player);
-				_player.Health -= damage;
+				
 				if (_player.Health < 20)
 				{
-					new CriticalHealthIndicator().NotifyAboutDamage(_player.Health, damage);
+					new CriticalHealthIndicator().NotifyAboutDamage(_player.Health, currentEnemy.Damage);
+					if (_player.Health <= 0)
+					{
+						Console.WriteLine("Game over");
+						break;
+					}
 				}
 				else
 				{
-					new RegularDamageIndicator().NotifyAboutDamage(_player.Health, damage);
+					new RegularDamageIndicator().NotifyAboutDamage(_player.Health, currentEnemy.Damage);
 				}
 				Thread.Sleep(500);
 			}

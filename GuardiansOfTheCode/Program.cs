@@ -13,14 +13,12 @@ public class Program
 
 		try
 		{
-			testApiConncetion().Wait();
+			//testApiConncetion().Wait();
+			//TestBattlefields();
 			//TestDecorators();
-			//GameboardFacade gameboard = new GameboardFacade();
-			//	gameboard.Play(player, 1).Wait();
-
 			//TestComposite();
-
-			TestBattlefields();
+			GameboardFacade gameboard = new GameboardFacade();
+			gameboard.Play(player, 1).Wait();
 
 			Console.ReadKey();
 		}

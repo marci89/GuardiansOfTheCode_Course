@@ -15,7 +15,10 @@ namespace GuardiansOfTheCode.Enemy
         public int Level => _level;
 
         public int OverTimeDamage { get; set; }
-        public int Armor { get; set; }
+
+		public int Damage { get; set; } = 30;
+
+		public int Armor { get; set; }
         public bool Paralyzed { get; set; }
         public int ParalyzedFor { get; set; }
 
@@ -28,7 +31,7 @@ namespace GuardiansOfTheCode.Enemy
         public int Attack(PrimaryPlayer player)
         {
             Console.WriteLine("Giant attacking " + player.Name);
-            return 30;
+            return Damage;
         }
 
         public void Defend(PrimaryPlayer player)

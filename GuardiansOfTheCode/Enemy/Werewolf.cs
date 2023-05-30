@@ -15,11 +15,13 @@ namespace GuardiansOfTheCode.Enemy
         public int Level => _level;
 
         public int OverTimeDamage { get; set; }
-        public int Armor { get; set; }
+
+		public int Damage { get; set; } = 20;
+		public int Armor { get; set; }
         public bool Paralyzed { get; set; }
         public int ParalyzedFor { get; set; }
 
-        public Werewolf(int health, int level)
+		public Werewolf(int health, int level)
         {
             _health = health;
             _level = level;
@@ -28,7 +30,7 @@ namespace GuardiansOfTheCode.Enemy
         public int Attack(PrimaryPlayer player)
         {
             Console.WriteLine("Werewolf attacking " + player.Name);
-            return 20;
+            return Damage;
         }
 
         public void Defend(PrimaryPlayer player)

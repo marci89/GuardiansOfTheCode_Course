@@ -19,10 +19,15 @@ namespace GuardiansOfTheCode.Enemy
         /// </summary>
         public int OverTimeDamage { get; set; }
 
-        /// <summary>
-        /// Enemy's armor
-        /// </summary>
-        public int Armor { get; set; }
+		/// <summary>
+		/// Enemy's damage
+		/// </summary>
+		public int Damage { get; }
+
+		/// <summary>
+		/// Enemy's armor
+		/// </summary>
+		public int Armor { get; set; }
 
         /// <summary>
         /// Enemy paralyzed

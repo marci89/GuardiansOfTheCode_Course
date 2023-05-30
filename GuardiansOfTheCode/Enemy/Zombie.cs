@@ -10,6 +10,7 @@ namespace GuardiansOfTheCode.Enemy
         private int _health;
         private readonly int _level;
 
+        public int Damage { get; set; } = 10;
         public int Health { get => _health; set => _health = value; }
 
         public int Level => _level;
@@ -29,7 +30,7 @@ namespace GuardiansOfTheCode.Enemy
         public int Attack(PrimaryPlayer player)
         {
             Console.WriteLine("Zombie attacking " + player.Name);
-			return 10;
+			return Damage;
 		}
 
         public void Defend(PrimaryPlayer player)
